@@ -50,7 +50,8 @@ m_showingFrame(GAFFirstFrameIndex),
 m_lastVisibleInFrame(0),
 m_objectType(GAFObjectType::None),
 m_animationsSelectorScheduled(false),
-m_isInResetState(false)
+m_isInResetState(false),
+m_useManualPosition(false)
 {
     m_charType = GAFCharacterType::Timeline;
     m_parentColorTransforms[0] = cocos2d::Vec4::ONE;
@@ -743,6 +744,33 @@ cocos2d::AffineTransform GAFObject::getNodeToParentAffineTransform() const
         return GAFSprite::getNodeToParentAffineTransform();
 }
 
+
+const cocos2d::Point& GAFObject::getSubobjectPosition() const
+{
+    if (m_useManualPosition)
+    {
+        return m_manualPosition;
+    }
+    else if (m_timelineParentObject != nullptr)
+    {
+        auto t = getExternalTransform();
+        return cocos2d::Point(t.tx, t.ty);
+    }
+    else
+    {
+        return GAFSprite::getPosition();
+    }
+}
+
+void GAFObject::setSubobjectPosition(const cocos2d::Point& position)
+{
+    if (m_timelineParentObject != nullptr)
+    {
+        m_useManualPosition = true;
+        m_manualPosition = position;
+    }
+}
+
 void GAFObject::rearrangeSubobject(cocos2d::Node* out, cocos2d::Node* child, int zIndex)
 {
     cocos2d::Node* parent = child->getParent();
@@ -797,7 +825,14 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
                 float csf = m_timeline->usedAtlasScale();
                 stateTransform.tx *= csf;
                 stateTransform.ty *= csf;
-                cocos2d::AffineTransform t = GAF_CGAffineTransformCocosFormatFromFlashFormat(state->affineTransform);
+                cocos2d::AffineTransform t = GAF_CGAffineTransformCocosFormatFromFlashFormat(stateTransform);
+                if (subObject->m_useManualPosition)
+                {
+                    t.tx = subObject->m_manualPosition.x;
+                    const float flipMul = isFlippedY() ? -2 : 2;
+                    t.ty = getAnchorPointInPoints().y * flipMul + subObject->m_manualPosition.y;
+                }
+                
                 subObject->setAdditionalTransform(t);
                 subObject->m_parentFilters.clear();
                 const Filters_t& filters = state->getFilters();
@@ -919,6 +954,11 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
             stateTransform.tx *= csf;
             stateTransform.ty *= csf;
             cocos2d::AffineTransform t = GAF_CGAffineTransformCocosFormatFromFlashFormat(state->affineTransform);
+            if (subObject->m_useManualPosition)
+            {
+                t.tx = subObject->m_manualPosition.x;
+                t.ty = -subObject->m_manualPosition.y;
+            }
             
             if (isFlippedX() || isFlippedY())
             {
