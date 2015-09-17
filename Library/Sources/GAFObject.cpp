@@ -825,14 +825,7 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
                 float csf = m_timeline->usedAtlasScale();
                 stateTransform.tx *= csf;
                 stateTransform.ty *= csf;
-                cocos2d::AffineTransform t = GAF_CGAffineTransformCocosFormatFromFlashFormat(stateTransform);
-                if (subObject->m_useManualPosition)
-                {
-                    t.tx = subObject->m_manualPosition.x;
-                    const float flipMul = isFlippedY() ? -2 : 2;
-                    t.ty = getAnchorPointInPoints().y * flipMul + subObject->m_manualPosition.y;
-                }
-                
+                cocos2d::AffineTransform t = GAF_CGAffineTransformCocosFormatFromFlashFormat(state->affineTransform);
                 subObject->setAdditionalTransform(t);
                 subObject->m_parentFilters.clear();
                 const Filters_t& filters = state->getFilters();
@@ -969,13 +962,6 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
 
                 cocos2d::AffineTransform flipCenterTransform = cocos2d::AffineTransformMake(flipMulX, 0, 0, flipMulY, flipOffsetX, flipOffsetY);
                 t = AffineTransformConcat(t, flipCenterTransform);
-            }
-
-            cocos2d::Point curPos = subObject->getPosition();
-            if (curPos != cocos2d::Vec2::ZERO)
-            {
-                t.tx += curPos.x;
-                t.ty += curPos.y;
             }
             float curScale = subObject->getScale();
             if (fabs(curScale - 1.0) > std::numeric_limits<float>::epsilon())
