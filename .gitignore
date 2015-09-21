@@ -1,3 +1,5 @@
+.DS_Store
+
 # Compiled Object files
 *.slo
 *.lo
@@ -61,3 +63,5 @@ Library/Sources/latex
 /tests/proj.android/gen
 /tests/proj.android/libs
 /tests/proj.android/obj
+
+*xcuserdata*
