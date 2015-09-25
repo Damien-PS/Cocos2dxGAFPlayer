@@ -537,13 +537,17 @@
 		1A2FBE52192DECE200631FE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
 		1A2FBE53192DECE200631FE9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
