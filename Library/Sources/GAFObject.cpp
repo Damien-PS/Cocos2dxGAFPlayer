@@ -20,7 +20,7 @@ NS_GAF_BEGIN
 
 static const AnimationSequences_t s_emptySequences = AnimationSequences_t();
 
-cocos2d::AffineTransform GAFObject::GAF_CGAffineTransformCocosFormatFromFlashFormat(cocos2d::AffineTransform aTransform)
+const cocos2d::AffineTransform GAFObject::AffineTransformFlashToCocos(const cocos2d::AffineTransform& aTransform)
 {
     cocos2d::AffineTransform transform = aTransform;
     transform.b = -transform.b;
@@ -28,6 +28,15 @@ cocos2d::AffineTransform GAFObject::GAF_CGAffineTransformCocosFormatFromFlashFor
     float flipMul = isFlippedY() ? -2 : 2;
     transform.ty = getAnchorPointInPoints().y * flipMul - transform.ty;
     return transform;
+}
+
+const cocos2d::AffineTransform GAFObject::AffineTransformFlashToCocosWithPosition(const cocos2d::AffineTransform& aTransform, const cocos2d::Point aPos)
+{
+    cocos2d::AffineTransform transform = aTransform;
+    transform.tx = aPos.x;
+    transform.ty = m_asset->getHeader().frameSize.size.height - aPos.y;
+    
+    return AffineTransformFlashToCocos(transform);
 }
 
 
@@ -750,7 +759,7 @@ cocos2d::AffineTransform GAFObject::getNodeToParentAffineTransform() const
         return GAFSprite::getNodeToParentAffineTransform();
 }
 
-const cocos2d::Point& GAFObject::getSubobjectPosition() const
+const cocos2d::Point GAFObject::getSubobjectPosition() const
 {
     if (m_useManualPosition)
     {
@@ -830,12 +839,14 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
                 float csf = m_timeline->usedAtlasScale();
                 stateTransform.tx *= csf;
                 stateTransform.ty *= csf;
-                cocos2d::AffineTransform t = GAF_CGAffineTransformCocosFormatFromFlashFormat(stateTransform);
+                cocos2d::AffineTransform t;
                 if (subObject->m_useManualPosition)
                 {
-                    t.tx = subObject->m_manualPosition.x;
-                    const float flipMul = isFlippedY() ? -2 : 2;
-                    t.ty = getAnchorPointInPoints().y * flipMul - subObject->m_manualPosition.y;
+                    t = AffineTransformFlashToCocosWithPosition(stateTransform, subObject->m_manualPosition);
+                }
+                else
+                {
+                    t = AffineTransformFlashToCocos(stateTransform);
                 }
                 
                 subObject->setAdditionalTransform(t);
@@ -958,11 +969,14 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
             float csf = m_timeline->usedAtlasScale();
             stateTransform.tx *= csf;
             stateTransform.ty *= csf;
-            cocos2d::AffineTransform t = GAF_CGAffineTransformCocosFormatFromFlashFormat(state->affineTransform);
+            cocos2d::AffineTransform t;
             if (subObject->m_useManualPosition)
             {
-                t.tx = subObject->m_manualPosition.x;
-                t.ty = -subObject->m_manualPosition.y;
+                t = AffineTransformFlashToCocosWithPosition(state->affineTransform, subObject->m_manualPosition);
+            }
+            else
+            {
+                t = AffineTransformFlashToCocos(state->affineTransform);
             }
             
             if (isFlippedX() || isFlippedY())
@@ -1013,7 +1027,7 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
             float csf = m_timeline->usedAtlasScale();
             stateTransform.tx *= csf;
             stateTransform.ty *= csf;
-            cocos2d::AffineTransform t = GAF_CGAffineTransformCocosFormatFromFlashFormat(state->affineTransform);
+            cocos2d::AffineTransform t = AffineTransformFlashToCocos(state->affineTransform);
 
             if (isFlippedX() || isFlippedY())
             {
