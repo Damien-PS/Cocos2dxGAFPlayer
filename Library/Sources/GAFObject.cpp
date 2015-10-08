@@ -970,7 +970,7 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
             }
 
             subObject->setExternalTransform(t);
-
+            
             if (subObject->m_objectType == GAFObjectType::MovieClip)
             {
                 GAFMovieClip* mc = static_cast<GAFMovieClip*>(subObject);
