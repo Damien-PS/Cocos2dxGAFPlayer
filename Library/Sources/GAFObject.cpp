@@ -34,7 +34,7 @@ const cocos2d::AffineTransform GAFObject::AffineTransformFlashToCocosWithPositio
 {
     cocos2d::AffineTransform transform = aTransform;
     transform.tx = aPos.x;
-    transform.ty = m_asset->getHeader().frameSize.size.height - aPos.y;
+    transform.ty = -aPos.y;
     
     return AffineTransformFlashToCocos(transform);
 }
@@ -998,7 +998,7 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
             }
 
             subObject->setExternalTransform(t);
-
+            
             if (subObject->m_objectType == GAFObjectType::MovieClip)
             {
                 GAFMovieClip* mc = static_cast<GAFMovieClip*>(subObject);
