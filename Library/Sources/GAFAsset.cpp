@@ -371,7 +371,7 @@ GAFSprite* GAFAsset::getCustomRegion(const std::string& name)
         result = new GAFSprite();
         
         result->initWithSpriteFrame(spriteFrame, txElemet->rotation);
-        cocos2d::Vect pt = cocos2d::Vect(0 - (0 - (txElemet->pivotPoint.x / result->getContentSize().width)),
+        cocos2d::Vec2 pt = cocos2d::Vec2(0 - (0 - (txElemet->pivotPoint.x / result->getContentSize().width)),
             0 + (1 - (txElemet->pivotPoint.y / result->getContentSize().height)));
         result->setAnchorPoint(pt);
 
@@ -414,6 +414,7 @@ bool GAFAsset::setRootTimeline(const std::string& name)
     for (Timelines_t::iterator i = m_timelines.begin(), e = m_timelines.end(); i != e; i++)
     {
         std::string tl_name = i->second->getLinkageName();
+        CCLOG("%s vs %s", tl_name, name);
         if (tl_name.compare(name) == 0)
         {
             setRootTimeline(i->second);

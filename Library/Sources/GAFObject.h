@@ -14,7 +14,6 @@ class GAFObject : public GAFSprite
 {
 private:
     const cocos2d::AffineTransform AffineTransformFlashToCocos(const cocos2d::AffineTransform& aTransform);
-    const cocos2d::AffineTransform AffineTransformFlashToCocosWithPosition(const cocos2d::AffineTransform& aTransform, const cocos2d::Point aPos);
 
 public:
 
@@ -44,9 +43,6 @@ private:
 
     bool                                    m_isInResetState;
 
-    bool                                    m_useManualPosition;
-    cocos2d::Point                          m_manualPosition;
-
 private:
     void constructObject();
     GAFObject* _instantiateObject(uint32_t id, GAFCharacterType type, uint32_t reference, bool isMask);
@@ -64,6 +60,8 @@ protected:
     uint32_t                                m_lastVisibleInFrame; // Last frame that object was visible in
     Filters_t                               m_parentFilters;
     cocos2d::Vec4                           m_parentColorTransforms[2];
+
+    bool                                    m_isManualColor;
 
     void    setTimelineParentObject(GAFObject* obj) { m_timelineParentObject = obj; }
 
@@ -188,8 +186,8 @@ public:
     virtual const cocos2d::Mat4& getNodeToParentTransform() const override;
     virtual cocos2d::AffineTransform getNodeToParentAffineTransform() const override;
 
-    const cocos2d::Point getSubobjectPosition() const;
-    void setSubobjectPosition(const cocos2d::Point& position);
+    virtual void setColor(const cocos2d::Color3B& color) override;
+    virtual void setOpacity(GLubyte opacity) override;
 
     //////////////////////////////////////////////////////////////////////////
     // Accessors

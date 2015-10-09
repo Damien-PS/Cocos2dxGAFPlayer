@@ -30,37 +30,28 @@ const cocos2d::AffineTransform GAFObject::AffineTransformFlashToCocos(const coco
     return transform;
 }
 
-const cocos2d::AffineTransform GAFObject::AffineTransformFlashToCocosWithPosition(const cocos2d::AffineTransform& aTransform, const cocos2d::Point aPos)
-{
-    cocos2d::AffineTransform transform = aTransform;
-    transform.tx = aPos.x;
-    transform.ty = -aPos.y;
-    
-    return AffineTransformFlashToCocos(transform);
-}
 
-
-GAFObject::GAFObject() :
-m_timelineParentObject(nullptr),
-m_container(nullptr),
-m_totalFrameCount(0),
-m_currentSequenceStart(0),
-m_currentSequenceEnd(0),
-m_isRunning(false),
-m_isLooped(false),
-m_isReversed(false),
-m_timeDelta(0.0),
-m_fps(0),
-m_skipFpsCheck(false),
-m_asset(nullptr),
-m_timeline(nullptr),
-m_currentFrame(GAFFirstFrameIndex),
-m_showingFrame(GAFFirstFrameIndex),
-m_lastVisibleInFrame(0),
-m_objectType(GAFObjectType::None),
-m_animationsSelectorScheduled(false),
-m_isInResetState(false),
-m_useManualPosition(false)
+GAFObject::GAFObject()
+    : m_timelineParentObject(nullptr)
+    , m_container(nullptr)
+    , m_totalFrameCount(0)
+    , m_currentSequenceStart(0)
+    , m_currentSequenceEnd(0)
+    , m_isRunning(false)
+    , m_isLooped(false)
+    , m_isReversed(false)
+    , m_timeDelta(0.0)
+    , m_fps(0)
+    , m_skipFpsCheck(false)
+    , m_asset(nullptr)
+    , m_timeline(nullptr)
+    , m_currentFrame(GAFFirstFrameIndex)
+    , m_showingFrame(GAFFirstFrameIndex)
+    , m_lastVisibleInFrame(0)
+    , m_objectType(GAFObjectType::None)
+    , m_animationsSelectorScheduled(false)
+    , m_isInResetState(false)
+    , m_isManualColor(false)
 {
     m_charType = GAFCharacterType::Timeline;
     m_parentColorTransforms[0] = cocos2d::Vec4::ONE;
@@ -187,7 +178,7 @@ GAFObject* GAFObject::_instantiateObject(uint32_t id, GAFCharacterType type, uin
                 result = new GAFMask();
             result->initWithSpriteFrame(spriteFrame, txElemet->rotation);
             result->objectIdRef = id;
-            cocos2d::Vect pt = cocos2d::Vect(0 - (0 - (txElemet->pivotPoint.x / result->getContentSize().width)),
+            cocos2d::Vec2 pt = cocos2d::Vec2(0 - (0 - (txElemet->pivotPoint.x / result->getContentSize().width)),
                 0 + (1 - (txElemet->pivotPoint.y / result->getContentSize().height)));
             result->setAnchorPoint(pt);
 
@@ -759,30 +750,16 @@ cocos2d::AffineTransform GAFObject::getNodeToParentAffineTransform() const
         return GAFSprite::getNodeToParentAffineTransform();
 }
 
-const cocos2d::Point GAFObject::getSubobjectPosition() const
+void GAFObject::setColor(const cocos2d::Color3B& color)
 {
-    if (m_useManualPosition)
-    {
-        return m_manualPosition;
-    }
-    else if (m_timelineParentObject != nullptr)
-    {
-        auto t = getExternalTransform();
-        return cocos2d::Point(t.tx, t.ty);
-    }
-    else
-    {
-        return GAFSprite::getPosition();
-    }
+    m_isManualColor = true;
+    Node::setColor(color);
 }
 
-void GAFObject::setSubobjectPosition(const cocos2d::Point& position)
+void GAFObject::setOpacity(GLubyte opacity)
 {
-    if (m_timelineParentObject != nullptr)
-    {
-        m_useManualPosition = true;
-        m_manualPosition = position;
-    }
+    m_isManualColor = true;
+    Node::setOpacity(opacity);
 }
 
 void GAFObject::rearrangeSubobject(cocos2d::Node* out, cocos2d::Node* child, int zIndex)
@@ -839,15 +816,7 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
                 float csf = m_timeline->usedAtlasScale();
                 stateTransform.tx *= csf;
                 stateTransform.ty *= csf;
-                cocos2d::AffineTransform t;
-                if (subObject->m_useManualPosition)
-                {
-                    t = AffineTransformFlashToCocosWithPosition(stateTransform, subObject->m_manualPosition);
-                }
-                else
-                {
-                    t = AffineTransformFlashToCocos(stateTransform);
-                }
+                cocos2d::AffineTransform t = AffineTransformFlashToCocos(stateTransform);
                 
                 subObject->setAdditionalTransform(t);
                 subObject->m_parentFilters.clear();
@@ -889,7 +858,7 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
         }
         else if (subObject->m_charType == GAFCharacterType::Texture)
         {
-            cocos2d::Vect prevAP = subObject->getAnchorPoint();
+            cocos2d::Vec2 prevAP = subObject->getAnchorPoint();
             cocos2d::Size  prevCS = subObject->getContentSize();
 
 #if ENABLE_RUNTIME_FILTERS
@@ -938,7 +907,7 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
 #endif
 
             cocos2d::Size newCS = subObject->getContentSize();
-            cocos2d::Vect newAP = cocos2d::Vect(((prevAP.x - 0.5f) * prevCS.width) / newCS.width + 0.5f,
+            cocos2d::Vec2 newAP = cocos2d::Vec2(((prevAP.x - 0.5f) * prevCS.width) / newCS.width + 0.5f,
                 ((prevAP.y - 0.5f) * prevCS.height) / newCS.height + 0.5f);
             subObject->setAnchorPoint(newAP);
 
@@ -969,15 +938,7 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
             float csf = m_timeline->usedAtlasScale();
             stateTransform.tx *= csf;
             stateTransform.ty *= csf;
-            cocos2d::AffineTransform t;
-            if (subObject->m_useManualPosition)
-            {
-                t = AffineTransformFlashToCocosWithPosition(state->affineTransform, subObject->m_manualPosition);
-            }
-            else
-            {
-                t = AffineTransformFlashToCocos(state->affineTransform);
-            }
+            cocos2d::AffineTransform t = AffineTransformFlashToCocos(state->affineTransform);
             
             if (isFlippedX() || isFlippedY())
             {
@@ -998,7 +959,7 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
             }
 
             subObject->setExternalTransform(t);
-            
+
             if (subObject->m_objectType == GAFObjectType::MovieClip)
             {
                 GAFMovieClip* mc = static_cast<GAFMovieClip*>(subObject);
