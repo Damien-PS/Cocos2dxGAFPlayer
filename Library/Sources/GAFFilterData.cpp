@@ -17,13 +17,31 @@ void GAFBlurFilterData::apply(GAFMovieClip* subObject)
     subObject->setBlurFilterData(this);
 }
 
-GAFColorColorMatrixFilterData::GAFColorColorMatrixFilterData():
+const float GAFColorMatrixFilterData::Grayscale::matrix[16] = { 
+    0.299f, 0.299f, 0.299f, 0,
+    0.587f, 0.587f, 0.587f, 0,
+    0.114f, 0.114f, 0.114f, 0,
+    0, 0, 0, 1 
+};
+const float GAFColorMatrixFilterData::Grayscale::matrix2[4] = { 0, 0, 0, 0 };
+
+GAFColorMatrixFilterData::GAFColorMatrixFilterData() :
 GAFFilterData(GAFFilterType::ColorMatrix)
 {
 
 }
 
-void GAFColorColorMatrixFilterData::apply(GAFMovieClip* subObject)
+void GAFColorMatrixFilterData::setMatrix(const float m[16])
+{
+    std::copy(m, m + 16, matrix);
+}
+
+void GAFColorMatrixFilterData::setMatrix2(const float m[4])
+{
+    std::copy(m, m + 4, matrix2);
+}
+
+void GAFColorMatrixFilterData::apply(GAFMovieClip* subObject)
 {
     subObject->setColorMarixFilterData(this);
 }
