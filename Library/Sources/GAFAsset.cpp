@@ -414,6 +414,7 @@ bool GAFAsset::setRootTimeline(const std::string& name)
     for (Timelines_t::iterator i = m_timelines.begin(), e = m_timelines.end(); i != e; i++)
     {
         std::string tl_name = i->second->getLinkageName();
+        CCLOG("%s vs %s", tl_name, name);
         if (tl_name.compare(name) == 0)
         {
             setRootTimeline(i->second);
