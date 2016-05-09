@@ -231,7 +231,6 @@ void GAFObject::instantiateObject(const AnimationObjects_t& objs, const Animatio
         m_displayList[objectId] = stencil;
         cocos2d::ClippingNode* mask = cocos2d::ClippingNode::create(stencil);
         mask->retain();
-        mask->setAlphaThreshold(0.1);
         m_masks[objectId] = mask;
     }
 }
@@ -778,7 +777,7 @@ void GAFObject::setOpacity(GLubyte opacity)
 void GAFObject::rearrangeSubobject(cocos2d::Node* out, cocos2d::Node* child, int zIndex)
 {
     cocos2d::Node* parent = child->getParent();
-    child->setCameraMask(getCameraMask());
+    child->setCameraMask(getCameraMask(), false);
     if (parent != out)
     {
         child->removeFromParentAndCleanup(false);
