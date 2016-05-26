@@ -975,11 +975,15 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
                 t = AffineTransformConcat(t, flipCenterTransform);
             }
 
-            float curScale = subObject->getScale();
-            if (fabs(curScale - 1.0) > std::numeric_limits<float>::epsilon())
+            float curScaleX = subObject->getScaleX();
+            if (fabs(curScaleX - 1.0) > std::numeric_limits<float>::epsilon())
             {
-                t.a *= curScale;
-                t.d *= curScale;
+                t.a *= curScaleX;
+            }
+            float curScaleY = subObject->getScaleY();
+            if (fabs(curScaleY - 1.0) > std::numeric_limits<float>::epsilon())
+            {
+                t.d *= curScaleY;
             }
 
             subObject->setExternalTransform(t);
