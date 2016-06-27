@@ -70,9 +70,9 @@ bool GAFMovieClip::initWithTexture(cocos2d::Texture2D *pTexture, const cocos2d::
         m_programNoCtx->retain();
 #endif
 #if CHECK_CTX_IDENTITY
-        _glProgramState = m_programNoCtx;
+        setGLProgramState(m_programNoCtx);
 #else
-        _glProgramState = m_programBase;
+        setGLProgramState(m_programBase);
 #endif
         return true;
     }
@@ -94,6 +94,18 @@ void GAFMovieClip::setGLProgram(GLProgram *glProgram)
         }
         Node::setGLProgram(glProgram);
     }
+}
+
+/** Prevent GAF to reset the programstate with the base one each frame */
+/** CAREFULL: the previous one is not stored, so issues can rise up if it was not the base one that was used */
+void GAFMovieClip::setGLProgramState(GLProgramState *glProgramState)
+{
+#if CHECK_CTX_IDENTITY
+    m_programNoCtx = glProgramState;
+#else
+    m_programBase = glProgramState;
+#endif
+    cocos2d::Node::setGLProgramState(glProgramState);
 }
 
 void GAFMovieClip::handleStencilProgram()
@@ -278,11 +290,11 @@ void GAFMovieClip::updateCtx()
     m_ctxDirty = false;
     if (!m_colorTransformOffsets.isZero() || m_colorMatrixFilterData || m_isManualColor)
     {
-        _glProgramState = m_programBase;
+        setGLProgramState(m_programBase);
     }
     else
     {
-        _glProgramState = m_programNoCtx;
+        setGLProgramState(m_programNoCtx);
     }
 }
 
