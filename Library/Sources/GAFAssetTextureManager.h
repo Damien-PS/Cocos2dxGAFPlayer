@@ -28,6 +28,7 @@ private:
 
 	ImagesMap_t m_images;
 	TexturesMap_t m_textures;
+    GAFTextureLoadDelegate_t m_delegate;
 
 	uint32_t m_memoryConsumption;
 };

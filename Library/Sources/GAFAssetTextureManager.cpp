@@ -54,6 +54,8 @@ bool GAFAssetTextureManager::isAtlasInfoPresent(const GAFTextureAtlas::AtlasInfo
 
 void GAFAssetTextureManager::loadImages(const std::string& dir, GAFTextureLoadDelegate_t delegate, cocos2d::ZipFile* bundle)
 {
+    m_delegate = delegate;
+    
 	std::stable_sort(m_atlasInfos.begin(), m_atlasInfos.end(), GAFTextureAtlas::compareAtlasesById);
 
 	m_images.clear(); // check
@@ -84,43 +86,45 @@ void GAFAssetTextureManager::loadImages(const std::string& dir, GAFTextureLoadDe
 			cocos2d::Image* image = new cocos2d::Image();
 			std::string path = cocos2d::FileUtils::getInstance()->fullPathFromRelativeFile(source.c_str(), dir.c_str());
 
-			if (delegate)
+			if (delegate.loadTextureForId)
 			{
-                path = delegate(path);
+                delegate.loadTextureForId(path, info.id);
 			}
+            else
+            {
+                if (!bundle)
+                {
+                    image->initWithImageFile(path.c_str());
+                }
+                else
+                {
+                    ssize_t sz = 0;
+                    unsigned char* imgData = bundle->getFileData(path, &sz);
+                    if (!imgData || !sz)
+                        return;
 
-			if (!bundle)
-			{
-				image->initWithImageFile(path.c_str());
-			}
-			else
-			{
-				ssize_t sz = 0;
-				unsigned char* imgData = bundle->getFileData(path, &sz);
-				if (!imgData || !sz)
-					return;
-
-				image->initWithImageData(imgData, sz);
-			}
-
-			m_memoryConsumption += image->getDataLen();
+                    image->initWithImageData(imgData, sz);
+                }
 
 #if ENABLE_GAF_MANUAL_PREMULTIPLY
-			if (!image->isPremultipliedAlpha() && image->hasAlpha())
-			{
-				//Premultiply
-				unsigned char* begin = image->getData();
-				unsigned int width = image->getWidth();
-				unsigned int height = image->getHeight();
-				int Bpp = image->getBitPerPixel() / 8;
-				unsigned char* end = begin + width * height * Bpp;
-				for (auto data = begin; data < end; data += Bpp)
-				{
-					unsigned int* wordData = (unsigned int*)(data);
-					*wordData = CC_RGB_PREMULTIPLY_ALPHA(data[0], data[1], data[2], data[3]);
-				}
-			}
+                if (!image->isPremultipliedAlpha() && image->hasAlpha())
+                {
+                    //Premultiply
+                    unsigned char* begin = image->getData();
+                    unsigned int width = image->getWidth();
+                    unsigned int height = image->getHeight();
+                    int Bpp = image->getBitPerPixel() / 8;
+                    unsigned char* end = begin + width * height * Bpp;
+                    for (auto data = begin; data < end; data += Bpp)
+                    {
+                        unsigned int* wordData = (unsigned int*)(data);
+                        *wordData = CC_RGB_PREMULTIPLY_ALPHA(data[0], data[1], data[2], data[3]);
+                    }
+                }
 #endif
+            }
+            
+            m_memoryConsumption += image->getDataLen();
 			m_images[info.id] = image;
 		}
 	}
@@ -133,6 +137,10 @@ cocos2d::Texture2D* GAFAssetTextureManager::getTextureById(uint32_t id)
 	{
 		return txIt->second;
 	}
+    
+    // delegate will do everything for me
+    if ( m_delegate.getTextureForId )
+        return m_delegate.getTextureForId(id);
     
     // check if still not created
     ImagesMap_t::const_iterator imagesIt = m_images.find(id);

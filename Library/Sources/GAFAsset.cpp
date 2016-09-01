@@ -61,7 +61,7 @@ GAFObject* GAFAsset::createObjectAndRun(bool looped)
 }
 
 GAFAsset::GAFAsset() 
-: m_textureLoadDelegate(nullptr)
+: m_textureLoadDelegate()
 , m_soundDelegate(nullptr)
 , m_sceneFps(60)
 , m_sceneWidth(0)
@@ -105,7 +105,7 @@ GAFAsset* GAFAsset::create(const std::string& gafFilePath, GAFTextureLoadDelegat
 
 GAFAsset* GAFAsset::create(const std::string& gafFilePath)
 {
-    return create(gafFilePath, nullptr);
+    return create(gafFilePath, GAFTextureLoadDelegate_t {});
 }
 
 GAFAsset* GAFAsset::createWithBundle(const std::string& zipfilePath, const std::string& entryFile, GAFTextureLoadDelegate_t delegate, GAFLoader* customLoader /*= nullptr*/)
@@ -122,14 +122,14 @@ GAFAsset* GAFAsset::createWithBundle(const std::string& zipfilePath, const std::
 
 GAFAsset* GAFAsset::createWithBundle(const std::string& zipfilePath, const std::string& entryFile)
 {
-    return createWithBundle(zipfilePath, entryFile, nullptr);
+    return createWithBundle(zipfilePath, entryFile, GAFTextureLoadDelegate_t {});
 }
 
 void GAFAsset::getResourceReferences(const std::string& gafFilePath, std::vector<GAFResourcesInfo*> &dest)
 {
     GAFAsset * asset = new GAFAsset();
     asset->m_state = State::DryRun;
-    if (asset && asset->initWithGAFFile(gafFilePath, nullptr))
+    if (asset && asset->initWithGAFFile(gafFilePath, GAFTextureLoadDelegate_t {}))
     {
         asset->parseReferences(dest);
     }
@@ -141,7 +141,7 @@ void GAFAsset::getResourceReferencesFromBundle(const std::string& zipfilePath, c
 {
     GAFAsset * asset = new GAFAsset();
     asset->m_state = State::DryRun;
-    if (asset && asset->initWithGAFBundle(zipfilePath, entryFile, nullptr))
+    if (asset && asset->initWithGAFBundle(zipfilePath, entryFile, GAFTextureLoadDelegate_t {}))
     {
         asset->parseReferences(dest);
     }
