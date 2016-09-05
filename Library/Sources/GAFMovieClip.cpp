@@ -44,8 +44,8 @@ m_isStencil(false)
 GAFMovieClip::~GAFMovieClip()
 {
     CC_SAFE_RELEASE(m_initialTexture);
-    if (!m_isStencil)
-        _glProgramState = nullptr; // Should be treated here as weak pointer
+    //if (!m_isStencil)
+    //    _glProgramState = nullptr; // Should be treated here as weak pointer
     CC_SAFE_RELEASE(m_programBase);
     CC_SAFE_RELEASE(m_programNoCtx);
 }
@@ -100,9 +100,13 @@ void GAFMovieClip::setGLProgram(GLProgram *glProgram)
 /** CAREFULL: the previous one is not stored, so issues can rise up if it was not the base one that was used */
 void GAFMovieClip::setGLProgramState(GLProgramState *glProgramState)
 {
+    CC_SAFE_RETAIN(glProgramState);
+    
 #if CHECK_CTX_IDENTITY
+    CC_SAFE_RELEASE_NULL(m_programNoCtx);
     m_programNoCtx = glProgramState;
 #else
+    CC_SAFE_RELEASE_NULL(m_programBase);
     m_programBase = glProgramState;
 #endif
     cocos2d::Node::setGLProgramState(glProgramState);
