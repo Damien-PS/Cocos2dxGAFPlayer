@@ -34,7 +34,7 @@ public:
 
     virtual void setVertexRect(const cocos2d::Rect& rect) override;
     virtual void setTextureRect(const cocos2d::Rect& rect, bool rotated, const cocos2d::Size& untrimmedSize) override;
-    virtual void setTextureCoords(cocos2d::Rect rect) override;
+    virtual void setTextureCoords(const cocos2d::Rect& rect) override;
 
     void setExternalTransform(const cocos2d::AffineTransform& transform);
     const cocos2d::AffineTransform& getExternalTransform() const;
