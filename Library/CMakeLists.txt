@@ -4,8 +4,12 @@ cmake_minimum_required(VERSION 2.6)
 
 # project(GAFPlayer)
 
-set(COCOS_ROOT ${CMAKE_SOURCE_DIR}/../../../cocos)
-set(GAF_ROOT ${CMAKE_SOURCE_DIR}/../Library)
+message(CMAKE_SOURCE_DIR ${CMAKE_SOURCE_DIR})
+
+set(COCOS_ROOT ../../cocos2d-x/cocos)
+set(GAF_ROOT .)
+
+message(COCOS_ROOT ${COCOS_ROOT})
 
 if(WIN32)
   add_definitions(-D_WINDOWS)
@@ -45,16 +49,59 @@ include_directories(
   ${COCOS_ROOT}/platform/${PLATFORM_FOLDER}
   ${COCOS_ROOT}/../external/${PLATFORM_FOLDER}-specific/zlib/include
   ${COCOS_ROOT}/../external/glfw3/include/${PLATFORM_FOLDER}
+  ${COCOS_ROOT}/../external
   ${COCOS_ROOT}/base
   ${COCOS_ROOT}/math
 )
 
-set(CMAKE_EXE_LINKER_FLAGS “-framework AudioToolbox -framework CoreGraphics -framework QuartzCore -framework UIKit -framework OpenGLES”)
+set(CMAKE_EXE_LINKER_FLAGS ï¿½-framework AudioToolbox -framework CoreGraphics -framework QuartzCore -framework UIKit -framework OpenGLESï¿½)
 
-file(GLOB_RECURSE gaf_source_files
-  "${GAF_ROOT}/Sources/*.cpp")
+#file(GLOB_RECURSE gaf_source_files
+#  "${GAF_ROOT}/Sources/*.cpp")
 
-add_library(gafplayer ${gaf_source_files})
+#add_library(gafplayer ${gaf_source_files})
+
+add_library(gafplayer
+
+            Sources/GAFAnimationFrame.cpp
+            Sources/GAFAnimationSequence.cpp
+            Sources/GAFAsset.cpp
+            Sources/GAFAssetTextureManager.cpp
+            Sources/GAFCachedTexture.cpp
+            Sources/GAFFile.cpp
+            Sources/GAFFilterData.cpp
+            Sources/GAFFilterManager.cpp
+            Sources/GAFLoader.cpp
+            Sources/GAFMask.cpp
+            Sources/GAFMovieClip.cpp
+            Sources/GAFObject.cpp
+            Sources/GAFPrecompiled.cpp
+            Sources/GAFQuadCommand.cpp
+            Sources/GAFShaderManager.cpp
+            Sources/GAFSoundInfo.cpp
+            Sources/GAFSprite.cpp
+            Sources/GAFStream.cpp
+            Sources/GAFSubobjectState.cpp
+            Sources/GAFTextData.cpp
+            Sources/GAFTextField.cpp
+            Sources/GAFTextureAtlas.cpp
+            Sources/GAFTextureAtlasElement.cpp
+            Sources/GAFTimeline.cpp
+            Sources/GAFTimelineAction.cpp
+            Sources/PrimitiveDeserializer.cpp
+            Sources/TagDefineAnimationFrames.cpp
+            Sources/TagDefineAnimationFrames2.cpp
+            Sources/TagDefineAnimationMasks.cpp
+            Sources/TagDefineAnimationObjects.cpp
+            Sources/TagDefineAtlas.cpp
+            Sources/TagDefineAtlas3.cpp
+            Sources/TagDefineNamedParts.cpp
+            Sources/TagDefineSequences.cpp
+            Sources/TagDefineSounds.cpp
+            Sources/TagDefineStage.cpp
+            Sources/TagDefineTextField.cpp
+            Sources/TagDefineTimeline.cpp
+            )
 
 #install .a file
 INSTALL(
@@ -66,4 +113,9 @@ INSTALL(
 
 #install header files
 install(DIRECTORY Sources/ DESTINATION "include/GAFPlayer"
-  FILES_MATCHING PATTERN "*.h") 
+  FILES_MATCHING PATTERN "*.h")
+
+
+target_include_directories(gafplayer PUBLIC
+    Sources
+    ${COCOS_ROOT}/../external)
