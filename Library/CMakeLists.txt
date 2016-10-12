@@ -4,12 +4,8 @@ cmake_minimum_required(VERSION 2.6)
 
 # project(GAFPlayer)
 
-message(CMAKE_SOURCE_DIR ${CMAKE_SOURCE_DIR})
-
 set(COCOS_ROOT ../../cocos2d-x/cocos)
 set(GAF_ROOT .)
-
-message(COCOS_ROOT ${COCOS_ROOT})
 
 if(WIN32)
   add_definitions(-D_WINDOWS)
@@ -30,6 +26,19 @@ elseif(ANDROID)
   set(PLATFORM_FOLDER android)
 else()
 endif()
+
+add_definitions(-DUSE_FILE32API)
+add_definitions(-DCOCOS2D_DEBUG=1)
+add_definitions(-DCC_ENABLE_CHIPMUNK_INTEGRATION=0)
+add_definitions(-DCC_ENABLE_SCRIPT_BINDING=0)
+add_definitions(-DCC_USE_PHYSICS=0)
+add_definitions(-DCC_LUA_ENGINE_DEBUG=0)
+add_definitions(-DCC_USE_3D_PHYSICS=0)
+add_definitions(-DCC_ENABLE_BULLET_INTEGRATION=0)
+add_definitions(-DCC_USE_NAVMESH=0)
+add_definitions(-DCC_USE_TIFF=0)
+add_definitions(-DCC_USE_WEBP=0)
+add_definitions(-DRAPIDJSON_HAS_STDSTRING=1)
 
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions -std=c++11 -Wno-deprecated-declarations -Wno-reorder")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions -std=c++11")
