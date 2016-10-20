@@ -1424,22 +1424,22 @@ endif()
 
 # configure rtti
 if( DEFINED ANDROID_RTTI AND ANDROID_STL_FORCE_FEATURES )
- if( ANDROID_RTTI )
+# if( ANDROID_RTTI )
   set( CMAKE_CXX_FLAGS "-frtti ${CMAKE_CXX_FLAGS}" )
- else()
-  set( CMAKE_CXX_FLAGS "-fno-rtti ${CMAKE_CXX_FLAGS}" )
- endif()
+# else()
+#  set( CMAKE_CXX_FLAGS "-fno-rtti ${CMAKE_CXX_FLAGS}" )
+# endif()
 endif()
 
 # configure exceptios
 if( DEFINED ANDROID_EXCEPTIONS AND ANDROID_STL_FORCE_FEATURES )
- if( ANDROID_EXCEPTIONS )
+# if( ANDROID_EXCEPTIONS )
   set( CMAKE_CXX_FLAGS "-fexceptions ${CMAKE_CXX_FLAGS}" )
   set( CMAKE_C_FLAGS "-fexceptions ${CMAKE_C_FLAGS}" )
- else()
-  set( CMAKE_CXX_FLAGS "-fno-exceptions ${CMAKE_CXX_FLAGS}" )
-  set( CMAKE_C_FLAGS "-fno-exceptions ${CMAKE_C_FLAGS}" )
- endif()
+# else()
+#  set( CMAKE_CXX_FLAGS "-fno-exceptions ${CMAKE_CXX_FLAGS}" )
+#  set( CMAKE_C_FLAGS "-fno-exceptions ${CMAKE_C_FLAGS}" )
+# endif()
 endif()
 
 # global includes and link directories
