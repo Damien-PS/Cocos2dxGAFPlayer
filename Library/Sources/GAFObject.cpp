@@ -83,7 +83,7 @@ GAFObject * GAFObject::create(GAFAsset * anAsset, GAFTimeline* timeline)
     return nullptr;
 }
 
-bool GAFObject::init(GAFAsset * anAnimationData, GAFTimeline* timeline)
+bool GAFObject::initWithAsset(GAFAsset * anAnimationData, GAFTimeline* timeline)
 {
     CCAssert(anAnimationData, "anAssetData data should not be nil");
     CCAssert(timeline, "Timeline data should not be nil");
