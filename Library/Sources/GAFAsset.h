@@ -114,9 +114,9 @@ public:
 
     GAFAssetTextureManager*     getTextureManager();
 
-    const unsigned int getSceneFps() const;
-    const unsigned int getSceneWidth() const;
-    const unsigned int getSceneHeight() const;
+    unsigned int getSceneFps() const;
+    unsigned int getSceneWidth() const;
+    unsigned int getSceneHeight() const;
     const cocos2d::Color4B& getSceneColor() const;
     void setSceneFps(unsigned int);
     void setSceneWidth(unsigned int);

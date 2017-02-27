@@ -28,10 +28,10 @@ struct GAFMovieClipHash
     
 
 GAFMovieClip::GAFMovieClip():
-m_initialTexture(nullptr),
 m_colorMatrixFilterData(nullptr),
 m_glowFilterData(nullptr),
 m_blurFilterData(nullptr),
+m_initialTexture(nullptr),
 m_programBase(nullptr),
 m_programNoCtx(nullptr),
 m_ctxDirty(false),
@@ -221,7 +221,7 @@ uint32_t GAFMovieClip::setUniforms()
                 Vec4(m_colorMatrixFilterData->matrix2));
         }
     }
-    return XXH32((void*)&hash, sizeof(GAFMovieClipHash), 0);
+    return XXH32(reinterpret_cast<void*>(&hash), sizeof(GAFMovieClipHash), 0);
 }
 void GAFMovieClip::setColorTransform(const GLfloat * mults, const GLfloat * offsets)
 {

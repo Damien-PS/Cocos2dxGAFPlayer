@@ -28,7 +28,7 @@ protected:
     typedef std::map</*Tags::Enum*/ uint32_t, DefinitionTagBase*> TagLoaders_t;
     TagLoaders_t         m_tagLoaders;
 
-    virtual void         _processLoad(GAFFile* file, GAFAsset*);
+    void                 _processLoad(GAFFile* file, GAFAsset*);
 
 public:
     GAFLoader();

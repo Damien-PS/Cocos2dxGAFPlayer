@@ -76,7 +76,7 @@ void GAFAssetTextureManager::loadImages(const std::string& dir, GAFTextureLoadDe
 					source = aiSource.source;
 				}
 
-				if (aiSource.csf == cocos2d::Director::getInstance()->getContentScaleFactor())
+                if (std::abs(aiSource.csf - cocos2d::Director::getInstance()->getContentScaleFactor()) < std::numeric_limits<float>::epsilon())
 				{
 					source = aiSource.source;
 					break;

@@ -17,7 +17,7 @@ class GAFFilterManager : public cocos2d::Ref
 public:
     bool init();
     static GAFFilterManager* getInstance();
-    ~GAFFilterManager() {}
+    ~GAFFilterManager();
 
     cocos2d::Texture2D* applyFilter(cocos2d::Sprite*, GAFFilterData*);
 
@@ -38,10 +38,10 @@ private:
     cocos2d::Texture2D* renderShadowTexture(cocos2d::Sprite* sprite, GAFDropShadowFilterData* filter);
     
     void insertTexture(cocos2d::Texture2D*, unsigned int hash);
+
+    Cache_t& getDefaultCache() noexcept;
     
 private:
-
-    static Cache_t s_cache;
     static GAFFilterManager* s_instance;
     
     static size_t s_maxCacheSize;

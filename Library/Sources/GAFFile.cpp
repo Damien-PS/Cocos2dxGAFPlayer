@@ -240,7 +240,7 @@ bool GAFFile::_processOpen()
         unsigned long uncompressedSize = m_header.fileLenght;
         char* uncompressedBuffer = new char[uncompressedSize];
 
-        int retStatus = uncompress((Bytef*)uncompressedBuffer, &uncompressedSize, (Bytef*)(m_data + m_dataPosition), m_dataLen - m_dataPosition); // Decompress rest
+        int retStatus = uncompress(reinterpret_cast<Bytef*>(uncompressedBuffer), &uncompressedSize, reinterpret_cast<Bytef*>(m_data + m_dataPosition), m_dataLen - m_dataPosition); // Decompress rest
 
         if (retStatus != Z_OK)
         {

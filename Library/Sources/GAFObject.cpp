@@ -12,13 +12,14 @@
 #include "GAFFilterData.h"
 #include "GAFTextField.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Weverything"
 #include <math/TransformUtils.h>
+#pragma clang diagnostic pop
 
 #define ENABLE_RUNTIME_FILTERS 1
 
 NS_GAF_BEGIN
-
-static const AnimationSequences_t s_emptySequences = AnimationSequences_t();
 
 const cocos2d::AffineTransform GAFObject::AffineTransformFlashToCocos(const cocos2d::AffineTransform& aTransform)
 {
@@ -32,8 +33,7 @@ const cocos2d::AffineTransform GAFObject::AffineTransformFlashToCocos(const coco
 
 
 GAFObject::GAFObject()
-    : m_timelineParentObject(nullptr)
-    , m_container(nullptr)
+    : m_container(nullptr)
     , m_totalFrameCount(0)
     , m_currentSequenceStart(0)
     , m_currentSequenceEnd(0)
@@ -43,14 +43,15 @@ GAFObject::GAFObject()
     , m_timeDelta(0.0)
     , m_fps(0)
     , m_skipFpsCheck(false)
+    , m_animationsSelectorScheduled(false)
+    , m_isInResetState(false)
+    , m_timelineParentObject(nullptr)
     , m_asset(nullptr)
     , m_timeline(nullptr)
+    , m_objectType(GAFObjectType::None)
     , m_currentFrame(GAFFirstFrameIndex)
     , m_showingFrame(GAFFirstFrameIndex)
     , m_lastVisibleInFrame(0)
-    , m_objectType(GAFObjectType::None)
-    , m_animationsSelectorScheduled(false)
-    , m_isInResetState(false)
     , m_customFilter(nullptr)
     , m_isManualColor(false)
 {
@@ -336,7 +337,7 @@ void GAFObject::processAnimations(float dt)
     }
     else
     {
-        m_timeDelta += dt;
+        m_timeDelta += static_cast<double>(dt);
         double frameTime = 1.0 / m_fps;
         while (m_timeDelta >= frameTime)
         {
@@ -674,6 +675,7 @@ bool GAFObject::hasSequences() const
 
 const AnimationSequences_t& GAFObject::getSequences() const
 {
+    static const AnimationSequences_t s_emptySequences = AnimationSequences_t();
     if (m_timeline)
         return m_timeline->getAnimationSequences();
     return s_emptySequences;
@@ -977,12 +979,12 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
             }
 
             float curScaleX = subObject->getScaleX();
-            if (fabs(curScaleX - 1.0) > std::numeric_limits<float>::epsilon())
+            if (std::abs(curScaleX - 1.f) > std::numeric_limits<float>::epsilon())
             {
                 t.a *= curScaleX;
             }
             float curScaleY = subObject->getScaleY();
-            if (fabs(curScaleY - 1.0) > std::numeric_limits<float>::epsilon())
+            if (std::abs(curScaleY - 1.f) > std::numeric_limits<float>::epsilon())
             {
                 t.d *= curScaleY;
             }
@@ -1071,7 +1073,6 @@ void GAFObject::realizeFrame(cocos2d::Node* out, uint32_t frameIndex)
             break;
 
         case GAFActionType::None:
-        default:
             break;
         }
     }

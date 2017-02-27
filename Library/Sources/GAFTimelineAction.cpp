@@ -30,8 +30,6 @@ void GAFTimelineAction::setAction(GAFActionType type, ActionParams_t params, con
         CCASSERT(params.size() > 0 && params.size() < 5, "Something wrong with action parameters");
         m_params = params;
         break;
-    default:
-        break;
     }
 }
 

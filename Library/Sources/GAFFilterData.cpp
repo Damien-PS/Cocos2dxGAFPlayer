@@ -6,6 +6,24 @@
 
 NS_GAF_BEGIN
 
+GAFFilterData::GAFFilterData(GAFFilterType type) : m_type(type)
+{
+}
+
+GAFFilterData::~GAFFilterData()
+{
+}
+
+GAFFilterType GAFFilterData::getType() const
+{
+    return m_type;
+}
+
+void GAFFilterData::apply(GAFMovieClip*)
+{
+}
+
+
 GAFBlurFilterData::GAFBlurFilterData():
 GAFFilterData(GAFFilterType::Blur)
 {
@@ -76,9 +94,9 @@ void GAFDropShadowFilterData::apply(GAFMovieClip* subObject)
     shadowSprite->setTag(kShadowObjectTag);
     shadowSprite->setOpacity(static_cast<GLubyte>(cocos2d::clampf(strength, 0.0, 1.0) * 255));
 
-    const float anglerad = ((float)M_PI / 180.f) * angle;
+    const float anglerad = (static_cast<float>(M_PI) / 180.f) * angle;
     cocos2d::Size shadowTextureSize = shadowSprite->getContentSize();
-    cocos2d::Vec2 offset = cocos2d::Vec2(cos(anglerad) * distance, -sin(anglerad) * distance);
+    cocos2d::Vec2 offset = cocos2d::Vec2(std::cos(anglerad) * distance, -std::sin(anglerad) * distance);
     shadowSprite->setPosition(cocos2d::Vec2(texRect.size / 2) + offset);
     subObject->addChild(shadowSprite, -1);
 }

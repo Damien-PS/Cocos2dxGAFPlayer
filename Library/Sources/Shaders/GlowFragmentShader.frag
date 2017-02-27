@@ -1,4 +1,4 @@
-const char* GlowFragmentShader_fs = STRINGIFY(
+constexpr const char* GlowFragmentShader_fs = STRINGIFY(
 
 \n#ifdef GL_ES\n
 	const lowp int GAUSSIAN_SAMPLES = 9;

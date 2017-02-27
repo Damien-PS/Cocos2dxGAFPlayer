@@ -5,7 +5,7 @@ NS_GAF_BEGIN
 class GAFSoundInfo
 {
 public:
-    const static std::string SoundEvent;
+    static constexpr const char* SoundEvent = "gafPlaySound";
 
     enum class Format : uint8_t
     {

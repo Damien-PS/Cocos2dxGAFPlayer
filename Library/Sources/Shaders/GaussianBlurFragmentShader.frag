@@ -4,7 +4,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char* GaussianBlurFragmentShader_fs = STRINGIFY(
+constexpr const char* GaussianBlurFragmentShader_fs = STRINGIFY(
 
 \n#ifdef GL_ES\n
     varying highp vec2 v_texCoord;

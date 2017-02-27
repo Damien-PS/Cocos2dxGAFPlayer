@@ -2,26 +2,24 @@
 #include "GAFSprite.h"
 #include "GAFCollections.h"
 
-#include "math/TransformUtils.h"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Weverything"
+#include <math/TransformUtils.h>
+#pragma clang diagnostic pop
 #include "../external/xxhash/xxhash.h"
 
 USING_NS_CC;
-
-#if CC_SPRITEBATCHNODE_RENDER_SUBPIXEL
-#define RENDER_IN_SUBPIXEL
-#else
-#define RENDER_IN_SUBPIXEL(__A__) ( (int)(__A__))
-#endif
 
 NS_GAF_BEGIN
 
 GAFSprite::GAFSprite()
 : objectIdRef(IDNONE)
-, m_useSeparateBlendFunc(false)
-, m_isLocator(false)
-, m_blendEquation(-1)
-, m_atlasScale(1.0f)
 , m_externalTransform(AffineTransform::IDENTITY)
+, m_atlasScale(1.0f)
+, m_isLocator(false)
+, m_useSeparateBlendFunc(false)
+, m_blendEquation(-1)
+
 , m_rotation(GAFRotation::NONE)
 {
 #if COCOS2D_VERSION < 0x00030300
@@ -106,8 +104,8 @@ void GAFSprite::setTextureCoords(const cocos2d::Rect& rect)
         return;
     }
 
-    float atlasWidth = (float)tex->getPixelsWide();
-    float atlasHeight = (float)tex->getPixelsHigh();
+    float atlasWidth = static_cast<float>(tex->getPixelsWide());
+    float atlasHeight = static_cast<float>(tex->getPixelsHigh());
 
     float left = rect2.origin.x / atlasWidth;
     float right = (rect2.origin.x + rect2.size.width) / atlasWidth;
@@ -163,7 +161,6 @@ void GAFSprite::setTextureCoords(const cocos2d::Rect& rect)
         break;
 
     case gaf::GAFRotation::NONE:
-    default:
     {
         if (_flippedX)
         {
@@ -280,7 +277,7 @@ void GAFSprite::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &transform
 
 void GAFSprite::setAtlasScale(float scale)
 {
-    if (m_atlasScale != scale)
+    if (std::abs(m_atlasScale - scale) >= std::numeric_limits<float>::epsilon())
     {
         m_atlasScale = scale;
         _transformDirty = true;
@@ -297,10 +294,10 @@ uint32_t GAFSprite::setUniforms()
 #endif
     if (_glProgramState->getUniformCount() == 0)
     {
-        int glProgram = (int)getGLProgram()->getProgram();
-        int intArray[4] = { glProgram, (int)getTexture()->getName(), (int)getBlendFunc().src, (int)getBlendFunc().dst };
+        int glProgram = static_cast<int>(getGLProgram()->getProgram());
+        int intArray[4] = { glProgram, static_cast<int>(getTexture()->getName()), static_cast<int>(getBlendFunc().src), static_cast<int>(getBlendFunc().dst) };
 
-        materialID = XXH32((const void*)intArray, sizeof(intArray), 0);
+        materialID = XXH32(reinterpret_cast<const void*>(intArray), sizeof(intArray), 0);
     }
     return materialID;
 }
@@ -343,19 +340,19 @@ void GAFSprite::customDraw(cocos2d::Mat4& transform)
     CHECK_GL_ERROR_DEBUG();
 
 #define kQuadSize sizeof(_quad.bl)
-    long offset = (long)&_quad;
+    std::intptr_t offset = reinterpret_cast<intptr_t>(&_quad);
 
     // vertex
     int diff = offsetof(cocos2d::V3F_C4B_T2F, vertices);
-    glVertexAttribPointer(cocos2d::GLProgram::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, kQuadSize, (void*)(offset + diff));
+    glVertexAttribPointer(cocos2d::GLProgram::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, kQuadSize, reinterpret_cast<void*>(offset + diff));
 
     // texCoods
     diff = offsetof(cocos2d::V3F_C4B_T2F, texCoords);
-    glVertexAttribPointer(cocos2d::GLProgram::VERTEX_ATTRIB_TEX_COORDS, 2, GL_FLOAT, GL_FALSE, kQuadSize, (void*)(offset + diff));
+    glVertexAttribPointer(cocos2d::GLProgram::VERTEX_ATTRIB_TEX_COORDS, 2, GL_FLOAT, GL_FALSE, kQuadSize, reinterpret_cast<void*>(offset + diff));
 
     // color
     diff = offsetof(cocos2d::V3F_C4B_T2F, colors);
-    glVertexAttribPointer(cocos2d::GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, kQuadSize, (void*)(offset + diff));
+    glVertexAttribPointer(cocos2d::GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, kQuadSize, reinterpret_cast<void*>(offset + diff));
 
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 

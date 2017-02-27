@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F0486756FBB002C5C081EAEC675B5B4703B2B7B0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C23DC3407C298C281F0B3E354E9FAD8257A3726F" : 9223372036854775807,
+    "34A7E097E87D557FD7DB97D9605353F333E1E0D4" : 9223372036854775807,
+    "F0486756FBB002C5C081EAEC675B5B4703B2B7B0" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "CB009986-242F-4A2D-8089-CE116CD7A330",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C23DC3407C298C281F0B3E354E9FAD8257A3726F" : "..\/..",
+    "34A7E097E87D557FD7DB97D9605353F333E1E0D4" : "..\/..\/..\/..",
+    "F0486756FBB002C5C081EAEC675B5B4703B2B7B0" : "Cocos2dxGAFPlayer\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "GAFPlayer",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Library\/GAFPlayer.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:PrettySimple\/Oregon.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "34A7E097E87D557FD7DB97D9605353F333E1E0D4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:PrettySimple\/NewYork.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C23DC3407C298C281F0B3E354E9FAD8257A3726F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:Damien-PS\/Cocos2dxGAFPlayer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F0486756FBB002C5C081EAEC675B5B4703B2B7B0"
+    }
+  ]
+}

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A2FBEC4192DEF8700631FE9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2FBEC3192DEF8700631FE9 /* Foundation.framework */; };
 		1A2FBF4E192E00C800631FE9 /* GAFAnimationFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2FBF12192E00C800631FE9 /* GAFAnimationFrame.cpp */; };
 		1A2FBF4F192E00C800631FE9 /* GAFAnimationSequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2FBF14192E00C800631FE9 /* GAFAnimationSequence.cpp */; };
 		1A2FBF50192E00C800631FE9 /* GAFAsset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2FBF16192E00C800631FE9 /* GAFAsset.cpp */; };
@@ -31,6 +30,8 @@
 		1A95AE27193F29EB00AE1F30 /* GAFCachedTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A95AE25193F29EB00AE1F30 /* GAFCachedTexture.cpp */; };
 		1AB30523193CE3BF0012C01D /* GAFFilterManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AB30521193CE3BF0012C01D /* GAFFilterManager.cpp */; };
 		1AB33DBE1949BA57006B92A0 /* GAFQuadCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1AB33DBC1949BA57006B92A0 /* GAFQuadCommand.cpp */; };
+		2299A2651E64421D00144FBF /* DefinitionTagBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2299A2641E64421D00144FBF /* DefinitionTagBase.cpp */; };
+		2299A2661E64421D00144FBF /* DefinitionTagBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2299A2641E64421D00144FBF /* DefinitionTagBase.cpp */; };
 		290E5CAB19CF5A6C007A072D /* GAFMask.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 290E5CA519CF5A6C007A072D /* GAFMask.cpp */; };
 		290E5CAC19CF5A6C007A072D /* GAFMovieClip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 290E5CA719CF5A6C007A072D /* GAFMovieClip.cpp */; };
 		290E5CAD19CF5A6C007A072D /* GAFObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 290E5CA919CF5A6C007A072D /* GAFObject.cpp */; };
@@ -71,7 +72,6 @@
 		29CC581C1A36113E00B31D72 /* GAFShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2FBF23192E00C800631FE9 /* GAFShaderManager.cpp */; };
 		29CC581D1A36113E00B31D72 /* GAFCachedTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A95AE25193F29EB00AE1F30 /* GAFCachedTexture.cpp */; };
 		29CC581E1A36113E00B31D72 /* TagDefineNamedParts.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A2FBF45192E00C800631FE9 /* TagDefineNamedParts.cpp */; };
-		29CC58201A36113E00B31D72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A2FBEC3192DEF8700631FE9 /* Foundation.framework */; };
 		39869DB219532453004628D9 /* TagDefineAnimationFrames2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39869DAE19532453004628D9 /* TagDefineAnimationFrames2.cpp */; };
 		39869DB319532453004628D9 /* TagDefineTimeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39869DB019532453004628D9 /* TagDefineTimeline.cpp */; };
 		B63C5A741B4A83E2001C8112 /* TagDefineAtlas3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B63C5A701B4A83E2001C8112 /* TagDefineAtlas3.cpp */; };
@@ -167,6 +167,7 @@
 		1AB30522193CE3BF0012C01D /* GAFFilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAFFilterManager.h; sourceTree = "<group>"; };
 		1AB33DBC1949BA57006B92A0 /* GAFQuadCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GAFQuadCommand.cpp; sourceTree = "<group>"; };
 		1AB33DBD1949BA57006B92A0 /* GAFQuadCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAFQuadCommand.h; sourceTree = "<group>"; };
+		2299A2641E64421D00144FBF /* DefinitionTagBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DefinitionTagBase.cpp; sourceTree = "<group>"; };
 		290E5CA519CF5A6C007A072D /* GAFMask.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GAFMask.cpp; sourceTree = "<group>"; };
 		290E5CA619CF5A6C007A072D /* GAFMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAFMask.h; sourceTree = "<group>"; };
 		290E5CA719CF5A6C007A072D /* GAFMovieClip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GAFMovieClip.cpp; sourceTree = "<group>"; };
@@ -208,7 +209,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A2FBEC4192DEF8700631FE9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +216,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29CC58201A36113E00B31D72 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +357,7 @@
 				1A2FBF49192E00C800631FE9 /* TagDefineSequences.h */,
 				1A2FBF4A192E00C800631FE9 /* TagDefineStage.cpp */,
 				1A2FBF4B192E00C800631FE9 /* TagDefineStage.h */,
+				2299A2641E64421D00144FBF /* DefinitionTagBase.cpp */,
 			);
 			name = Tags;
 			sourceTree = "<group>";
@@ -450,6 +450,7 @@
 				29289E3919843B40003132F2 /* GAFTimeline.cpp in Sources */,
 				1A2FBF5A192E00C800631FE9 /* GAFSubobjectState.cpp in Sources */,
 				1A2FBF52192E00C800631FE9 /* GAFFilterData.cpp in Sources */,
+				2299A2651E64421D00144FBF /* DefinitionTagBase.cpp in Sources */,
 				1A2FBF5F192E00C800631FE9 /* TagDefineAnimationFrames.cpp in Sources */,
 				290E5CAC19CF5A6C007A072D /* GAFMovieClip.cpp in Sources */,
 				B643F9E119B741E0005D2E26 /* GAFAssetTextureManager.cpp in Sources */,
@@ -495,6 +496,7 @@
 				29CC57FE1A36113E00B31D72 /* GAFTimeline.cpp in Sources */,
 				29CC57FF1A36113E00B31D72 /* GAFSubobjectState.cpp in Sources */,
 				29CC58001A36113E00B31D72 /* GAFFilterData.cpp in Sources */,
+				2299A2661E64421D00144FBF /* DefinitionTagBase.cpp in Sources */,
 				29CC58011A36113E00B31D72 /* TagDefineAnimationFrames.cpp in Sources */,
 				29CC58021A36113E00B31D72 /* GAFMovieClip.cpp in Sources */,
 				29CC58031A36113E00B31D72 /* GAFAssetTextureManager.cpp in Sources */,
@@ -537,7 +539,38 @@
 		1A2FBE52192DECE200631FE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
 					USE_FILE32API,
 					"COCOS2D_DEBUG=1",
 					"CC_ENABLE_CHIPMUNK_INTEGRATION=0",
@@ -550,17 +583,66 @@
 					"CC_USE_TIFF=0",
 					"CC_USE_WEBP=0",
 				);
-				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-c++98-compat",
+					"-Wno-c++98-compat-pedantic",
+					"-Wno-c++11-compat",
+					"-Wno-c++11-compat-pedantic",
+					"-Wmove",
+					"-Winfinite-recursion",
+					"-Wrange-loop-analysis",
+					"-Wno-padded",
+					"-Wno-documentation-unknown-command",
+					"-Wno-documentation",
+				);
 			};
 			name = Debug;
 		};
 		1A2FBE53192DECE200631FE9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
 					USE_FILE32API,
 					"COCOS2D_DEBUG=0",
 					NDEBUG,
@@ -574,49 +656,44 @@
 					"CC_USE_TIFF=0",
 					"CC_USE_WEBP=0",
 				);
-				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				SDKROOT = iphoneos;
-			};
-			name = Release;
-		};
-		1A2FBEE2192DEF8800631FE9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				CCX_ROOT = "$(SRCROOT)/../../../";
-				CCX_ROOT2 = "$(SRCROOT)/../../cocos2d-x/";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DSTROOT = /tmp/gafplayer.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Sources/GAFPlayer-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					CC_TARGET_OS_IPHONE,
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = (
+					"-Weverything",
+					"-Wno-c++98-compat",
+					"-Wno-c++98-compat-pedantic",
+					"-Wno-c++11-compat",
+					"-Wno-c++11-compat-pedantic",
+					"-Wmove",
+					"-Winfinite-recursion",
+					"-Wrange-loop-analysis",
+					"-Wno-padded",
+					"-Wno-documentation-unknown-command",
+					"-Wno-documentation",
+				);
+			};
+			name = Release;
+		};
+		1A2FBEE2192DEF8800631FE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CCX_ROOT = "$(SRCROOT)/../../../";
+				CCX_ROOT2 = "$(SRCROOT)/../../cocos2d-x/";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sources/GAFPlayer-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					CC_TARGET_OS_IPHONE,
+					"$(inherited)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/..",
 					"$(CCX_ROOT)/cocos",
@@ -636,11 +713,8 @@
 					"$(CCX_ROOT2)/cocos/platform/ios",
 					"$(CCX_ROOT2)/external/",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -648,38 +722,14 @@
 		1A2FBEE3192DEF8800631FE9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
 				CCX_ROOT = "$(SRCROOT)/../../../";
 				CCX_ROOT2 = "$(SRCROOT)/../../cocos2d-x/";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				DSTROOT = /tmp/gafplayer.dst;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sources/GAFPlayer-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					CC_TARGET_OS_IPHONE,
 					"$(inherited)",
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/..",
 					"$(CCX_ROOT)/cocos",
@@ -699,53 +749,23 @@
 					"$(CCX_ROOT2)/cocos/platform/ios",
 					"$(CCX_ROOT2)/external/",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		29CC58231A36113E00B31D72 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
 				CCX_ROOT = "$(SRCROOT)/../../../";
 				CCX_ROOT2 = "$(SRCROOT)/../../cocos2d-x/";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				DSTROOT = /tmp/gafplayer.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sources/GAFPlayer-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					CC_TARGET_OS_MAC,
-					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/..",
 					"$(CCX_ROOT)/cocos",
@@ -768,11 +788,8 @@
 					"$(CCX_ROOT2)/cocos/math",
 					"$(CCX_ROOT2)/cocos/platform/mac",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "gafplayer Mac";
-				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -780,36 +797,14 @@
 		29CC58241A36113E00B31D72 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
 				CCX_ROOT = "$(SRCROOT)/../../../";
 				CCX_ROOT2 = "$(SRCROOT)/../../cocos2d-x/";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				DSTROOT = /tmp/gafplayer.dst;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sources/GAFPlayer-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = CC_TARGET_OS_MAC;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					CC_TARGET_OS_MAC,
+					"$(inherited)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(SRCROOT)/..",
 					"$(CCX_ROOT)/cocos",
@@ -832,12 +827,9 @@
 					"$(CCX_ROOT2)/cocos/math",
 					"$(CCX_ROOT2)/cocos/platform/mac",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "gafplayer Mac";
-				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};

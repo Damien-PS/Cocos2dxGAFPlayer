@@ -7,14 +7,13 @@
 NS_GAF_BEGIN
 
 GAFTimeline::GAFTimeline(GAFTimeline* parent, uint32_t id, const cocos2d::Rect& aabb, cocos2d::Point& pivot, uint32_t framesCount) :
-m_id(id)
-, m_aabb(aabb)
+m_aabb(aabb)
 , m_pivot(pivot)
-, m_framesCount(framesCount)
-, m_parent(parent)
 , m_sceneFps(0)
 , m_sceneWidth(0)
 , m_sceneHeight(0)
+, m_framesCount(framesCount)
+, m_parent(parent)
 {
 
 }
@@ -227,7 +226,7 @@ void GAFTimeline::_chooseTextureAtlas(float desiredAtlasScale)
     for (size_t i = 1; i < count; ++i)
     {
         float as = m_textureAtlases[i]->getScale();
-        if (fabs(atlasScale - desiredAtlasScale) > fabs(as - desiredAtlasScale))
+        if (std::abs(atlasScale - desiredAtlasScale) > std::abs(as - desiredAtlasScale))
         {
             m_currentTextureAtlas = m_textureAtlases[i];
             atlasScale = as;

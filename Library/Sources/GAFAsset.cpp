@@ -10,7 +10,10 @@
 
 #include "GAFLoader.h"
 
-#include "json/document.h"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Weverything"
+#include <json/document.h>
+#pragma clang diagnostic pop
 
 NS_GAF_BEGIN
 
@@ -61,12 +64,12 @@ GAFObject* GAFAsset::createObjectAndRun(bool looped)
 }
 
 GAFAsset::GAFAsset() 
-: m_textureLoadDelegate()
+: m_rootTimeline(nullptr)
+, m_textureLoadDelegate()
 , m_soundDelegate(nullptr)
 , m_sceneFps(60)
 , m_sceneWidth(0)
 , m_sceneHeight(0)
-, m_rootTimeline(nullptr)
 , m_desiredAtlasScale(1.0f)
 , m_gafFileName("")
 , m_state(State::Normal)
@@ -329,7 +332,7 @@ void GAFAsset::_chooseTextureAtlas(float desiredAtlasScale)
     for (size_t i = 1; i < count; ++i)
     {
         float as = m_textureAtlases[i]->getScale();
-        if (fabs(atlasScale - desiredAtlasScale) > fabs(as - desiredAtlasScale))
+        if (std::abs(atlasScale - desiredAtlasScale) > std::abs(as - desiredAtlasScale))
         {
             m_currentTextureAtlas = m_textureAtlases[i];
             atlasScale = as;
@@ -540,17 +543,17 @@ const GAFHeader& GAFAsset::getHeader() const
     return m_header;
 }
 
-const unsigned int GAFAsset::getSceneFps() const
+unsigned int GAFAsset::getSceneFps() const
 {
     return m_sceneFps;
 }
 
-const unsigned int GAFAsset::getSceneWidth() const
+unsigned int GAFAsset::getSceneWidth() const
 {
     return m_sceneWidth;
 }
 
-const unsigned int GAFAsset::getSceneHeight() const
+unsigned int GAFAsset::getSceneHeight() const
 {
     return m_sceneHeight;
 }

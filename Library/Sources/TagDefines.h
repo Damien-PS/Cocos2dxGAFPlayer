@@ -75,9 +75,6 @@ struct Tags
 
         case Tags::TagDefineAtlas3:
             return "TagDefineAtlas3";
-
-        default:
-            return "This tag is not yet implemented";
         }
     }
 };

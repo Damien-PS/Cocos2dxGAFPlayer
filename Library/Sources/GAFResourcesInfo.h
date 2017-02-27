@@ -28,7 +28,7 @@ public:
 
     bool operator==(const GAFResourcesInfoTexture &other)
     {
-        return source.compare(other.source) == 0 && fabs(csf - other.csf) < std::numeric_limits<float>::epsilon();
+        return source.compare(other.source) == 0 && std::abs(csf - other.csf) < std::numeric_limits<float>::epsilon();
     }
 
     std::string source;

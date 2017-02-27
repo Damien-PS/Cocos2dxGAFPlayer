@@ -4,7 +4,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const char* pcShader_PositionTextureAlpha_frag_fs = STRINGIFY(
+constexpr const char* pcShader_PositionTextureAlpha_frag_fs = STRINGIFY(
 
 \n#ifdef GL_ES\n
 precision mediump float;

@@ -1,7 +1,8 @@
 #include "GAFPrecompiled.h"
 #include "GAFShaderManager.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
 namespace gps
 {
 #include "ShadersPrecompiled/GAFPrecompiledShaders.h"
@@ -22,7 +23,7 @@ NS_GAF_BEGIN
 
     bool GAFShaderManager::s_initialized = false;
 
-    const char * const GAFShaderManager::s_fragmentShaders[] =
+    constexpr const char * GAFShaderManager::s_fragmentShaders[] =
     {
         GaussianBlurFragmentShader_fs,                  // GaussBlur
         GlowFragmentShader_fs,                          // Glow
@@ -76,7 +77,7 @@ NS_GAF_BEGIN
 
         if (!skip)
         {
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
             for (unsigned int i = 0; i < gps::s_numPrograms; ++i)
             {
                 cocos2d::

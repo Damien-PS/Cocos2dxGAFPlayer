@@ -38,7 +38,7 @@ void TagDefineTimeline::read(GAFStream* in, GAFAsset* asset, GAFTimeline* timeli
     asset->pushTimeline(id, tl);
     if (id == 0)
     {
-        asset->setRootTimeline((uint32_t)0);
+        asset->setRootTimeline(static_cast<uint32_t>(0));
     }
 }
 

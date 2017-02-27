@@ -3,7 +3,7 @@
 #include "GAFShaderManager.h"
 #include "base/ccMacros.h"
 
-#define USE_LAYERED_STENCIL 0
+//#define USE_LAYERED_STENCIL 0
 
 NS_GAF_BEGIN
 

@@ -166,7 +166,7 @@ void GAFLoader::_processLoad(GAFFile* file, GAFAsset* context)
 
 		timeline = new GAFTimeline(nullptr, 0, header.frameSize, header.pivot, header.framesCount);
 		context->pushTimeline(0, timeline);
-        context->setRootTimeline((uint32_t)0);
+        context->setRootTimeline(static_cast<uint32_t>(0));
     }
 
     _registerTagLoadersCommon();

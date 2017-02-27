@@ -10,18 +10,16 @@ class GAFFilterData
 protected:
     GAFFilterType m_type;
 public:
-
-    virtual ~GAFFilterData() {}
+    GAFFilterData() =delete;
+    GAFFilterData(GAFFilterType type);
+    GAFFilterData(const GAFFilterData& other) noexcept =default;
+    GAFFilterData& operator=(const GAFFilterData& other) noexcept =default;
+    GAFFilterData(GAFFilterData&& other) noexcept =default;
+    GAFFilterData& operator=(GAFFilterData&& other) noexcept =default;
+    virtual ~GAFFilterData();
     
-    GAFFilterType           getType() const
-    {
-        return m_type;
-    }
-
-    GAFFilterData(GAFFilterType type) : m_type(type)
-    {}
-
-    virtual void apply(GAFMovieClip*){};
+    GAFFilterType getType() const;
+    virtual void apply(GAFMovieClip*);
 };
 
 class GAFBlurFilterData : public GAFFilterData

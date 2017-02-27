@@ -77,7 +77,7 @@ int GAFStream::readSint(unsigned short bitcount)
 {
     assert(bitcount <= 32);
 
-    int retval = (int)readUint(bitcount);
+    int retval = static_cast<int>(readUint(bitcount));
 
     if (retval & (1 << (bitcount - 1)))
     {
@@ -155,13 +155,13 @@ Tags::Enum GAFStream::openTag()
 
     //BFORMATTED_GLOG(DLOG(INFO) << boost::format("[%d]: Opening tag: [%s] with len: [%d] expected stream position: [%d]") % getPosition() % Tags::toString((Tags::Enum)tagType) % tagLenght % (getPosition() + tagLenght));
 
-    TagRecord record = { m_input->getPosition() + tagLenght, tagLenght, (Tags::Enum)tagType };
+    TagRecord record = { m_input->getPosition() + tagLenght, tagLenght, static_cast<Tags::Enum>(tagType) };
 
     //CCLOG("[%d]: Opening tag: [%s] with len: [%d] expected stream position: [%d]", getPosition(), Tags::toString(record.tagType).c_str(), record.tagSize, record.expectedStreamPos);
 
     m_tagStack.push(record);
 
-    return (Tags::Enum)tagType;
+    return static_cast<Tags::Enum>(tagType);
 }
 
 void GAFStream::closeTag()

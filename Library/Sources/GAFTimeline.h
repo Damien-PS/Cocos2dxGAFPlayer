@@ -20,7 +20,6 @@ private:
     NamedParts_t            m_namedParts;
     TextsData_t             m_textsData;
 
-    uint32_t                m_id;
     cocos2d::Rect           m_aabb;
     cocos2d::Point          m_pivot;
 
