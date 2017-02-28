@@ -73,7 +73,7 @@ GAFObject * GAFObject::create(GAFAsset * anAsset, GAFTimeline* timeline)
 {
     GAFObject* ret = new GAFObject();
 
-    if (ret && ret->init(anAsset, timeline))
+    if (ret && ret->initWithAsset(anAsset, timeline))
     {
         ret->autorelease();
         return ret;
@@ -248,7 +248,7 @@ GAFObject* GAFObject::encloseNewTimeline(uint32_t reference)
     CCAssert(tl != timelines.end(), "Invalid object reference.");
 
     GAFObject* newObject = new GAFObject();
-    newObject->init(m_asset, tl->second);
+    newObject->initWithAsset(m_asset, tl->second);
     return newObject;
 }
 
